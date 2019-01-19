@@ -10,8 +10,8 @@ function run()
     pwd_path="/root";
     TIME=`date +"%Y%m%d"`;
     log_file="${pwd_path}/${TIME}.log";
-	email_address="1605227279@qq.com";
-	num=9;
+    email_address="1605227279@qq.com";
+    num=9;
 
     echo "Read-Only Memory,ROM:" &>> ${log_file}
     df -am &>> ${log_file}
