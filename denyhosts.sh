@@ -7,7 +7,7 @@
 #
 
 function init() {
-    num=9;
+    num=20;
     send_mail=1;
     pwd_path="/root";
     TIME=`date +"%Y%m%d%H%M"`;
@@ -29,9 +29,9 @@ function run()
     echo "Network Connections" &>> ${log_file}
     netstat -tnulp &>> ${log_file}
 
-    echo "System authorization information:" &>> ${log_file}
-    /root/rhost | awk '{a[$1]+=1;} END {for(i in a){print a[i]" "i;}}' &>> ${log_file}
-    ip=$(echo $(/root/rhost | awk -v num=${num} '{a[$1]+=1;} END {for(i in a){if (a[i] >= num) {print i;}}}'))
+    echo "System SSH authorization information:" &>> ${log_file}
+    /root/denyhosts/rhost | awk '{a[$1]+=1;} END {for(i in a){print a[i]" "i;}}' &>> ${log_file}
+    ip=$(echo $(/root/denyhosts/rhost | awk -v num=${num} '{a[$1]+=1;} END {for(i in a){if (a[i] >= num) {print i;}}}'))
     
     
     ip_address=($ip)
@@ -58,5 +58,6 @@ run;
 exit 0;
 20190103
 20190911
+20191008
 aixiao@aixiao.me
 

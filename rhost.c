@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     p = localtime(&timep);
     char p1[2];
 
-    if (p->tm_mday > 10) {
+    if (p->tm_mday >= 10) {
         if ((fp =
              popen
              ("grep -E \"^$(date \"+%h\").$(date \"+%d\")\" /var/log/auth.log | grep failure | grep rhost",
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     } else {
         if ((fp =
              popen
-             ("grep -E \"^$(date \"+%h\")..$(date \"+%d\")\" /var/log/auth.log | grep failure | grep rhost",
+             ("grep -E \"^$(date \"+%h\")..$(date | awk '{print $3}')\" /var/log/auth.log | grep failure | grep rhost",
               "r")) == NULL) {
             return 1;
         }
